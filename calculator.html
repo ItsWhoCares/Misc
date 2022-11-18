@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Calculator</title>
+  </head>
+  <style>
+    .result {
+      height: 50px;
+      text-align: center;
+      font-size: 40px;
+      border-style: solid;
+      border-color: black;
+      border-width: 2px;
+      border-radius: 5px;
+    }
+    button {
+      width: 100px;
+      height: 50px;
+      font-size: larger;
+    }
+  </style>
+  <body>
+    <div
+      style="
+        margin-top: 15%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      "
+    >
+      <table>
+        <tr>
+          <th colspan="3"><div id="e" class="result">0</div></th>
+          <th><button id="clr">C</button></th>
+        </tr>
+        <tr>
+          <th><button id="btn_7" onclick="addtoexp(this)">7</button></th>
+          <th><button id="btn_8" onclick="addtoexp(this)">8</button></th>
+          <th><button id="btn_9" onclick="addtoexp(this)">9</button></th>
+          <th><button id="btn_+" onclick="addtoexp(this)">+</button></th>
+        </tr>
+        <tr>
+          <th><button id="btn_4" onclick="addtoexp(this)">4</button></th>
+          <th><button id="btn_5" onclick="addtoexp(this)">5</button></th>
+          <th><button id="btn_6" onclick="addtoexp(this)">6</button></th>
+          <th><button id="btn_-" onclick="addtoexp(this)">-</button></th>
+        </tr>
+        <tr>
+          <th><button id="btn_1" onclick="addtoexp(this)">1</button></th>
+          <th><button id="btn_2" onclick="addtoexp(this)">2</button></th>
+          <th><button id="btn_3" onclick="addtoexp(this)">3</button></th>
+          <th><button id="btn_*" onclick="addtoexp(this)">*</button></th>
+        </tr>
+        <tr>
+          <th><button id="btn_/" onclick="addtoexp(this)">/</button></th>
+          <th><button id="btn_0" onclick="addtoexp(this)">0</button></th>
+          <th><button id="btn_." onclick="addtoexp(this)">.</button></th>
+          <th><button id="btn_=" onclick="addtoexp(this)">=</button></th>
+        </tr>
+      </table>
+    </div>
+    <script>
+      let exp = "0";
+      function clearexp() {
+        exp = "0";
+        e.innerHTML = exp;
+      }
+
+      clr.addEventListener("click", clearexp);
+
+      function addtoexp(btn) {
+        if (btn.innerHTML == "=") {
+          try {
+            exp = Math.round(eval(exp) * 100) / 100;
+          } catch (EvalError) {
+            exp = "Error";
+          }
+          e.innerHTML = exp;
+        } else if (exp != "0" && exp != "Error") {
+          exp += btn.innerHTML;
+        } else {
+          exp = btn.innerHTML;
+        }
+        e.innerHTML = exp;
+      }
+    </script>
+  </body>
+</html>
